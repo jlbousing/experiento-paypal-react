@@ -1,15 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ReactPayPal from "./ReactPayPal";
 
 function App() {
+  const [checkout, setCheckout] = React.useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -19,6 +18,20 @@ function App() {
           Learn React
         </a>
       </header>
+
+      {(checkout === true) ? 
+        <div className="payment-div">
+          <ReactPayPal 
+            total={500}
+          />
+        </div> 
+
+      :
+        <div>
+          <h1>React-PayPal</h1>
+          <button onClick={() => {setCheckout(true)}} className="checkout-button">Checkout</button>
+        </div>
+      }
     </div>
   );
 }
